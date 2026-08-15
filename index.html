@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DKTE ACM Student Chapter</title>
+    <!-- Fonts: Plus Jakarta Sans for premium tech feel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Icons (FontAwesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Liquid Color Background -->
+    <div class="liquid-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Glassmorphism Header -->
+    <header id="navbar" class="glass-nav">
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="#home" class="logo-link" style="display: flex; align-items: center; gap: 12px;">
+                    <img src="./assets/images/logo.png" alt="DKTE ACM Logo" class="nav-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                    <span class="logo-text" style="display:none;">DKTE <span class="logo-accent">ACM</span></span>
+                </a>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#team">Team</a></li>
+                </ul>
+            </nav>
+            <a href="#contact" class="btn btn-outline nav-cta">Join Chapter</a>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+        <!-- Mobile Nav Menu -->
+        <div class="mobile-nav glass-panel">
+            <ul class="mobile-nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#contact" class="btn btn-primary" style="margin-top: 10px;">Join Us</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Split-Screen Dynamic Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-split">
+            <!-- Left Side: Content -->
+            <div class="hero-content reveal">
+                <div class="hero-badge reveal delay-1">Association for Computing Machinery</div>
+                <h1 class="reveal delay-2">
+                    Innovating the Future of Technology.
+                </h1>
+                <p class="hero-subtext reveal delay-3">
+                    Welcome to the official DKTE Student Chapter. We are a community of passionate developers and designers pushing the boundaries of computing.
+                </p>
+                <div class="hero-buttons reveal delay-4">
+                    <a href="#events" class="btn btn-primary">
+                        <span>Explore Events</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#contact" class="btn btn-glass">Become a Member</a>
+                </div>
+            </div>
+            
+            <!-- Right Side: Abstract Visual -->
+            <div class="hero-visual reveal delay-2">
+                <div class="abstract-card card-1 glass-panel">
+                    <i class="fas fa-code"></i>
+                    <span>Develop</span>
+                </div>
+                <div class="abstract-card card-2 glass-panel">
+                    <i class="fas fa-paint-brush"></i>
+                    <span>Design</span>
+                </div>
+                <div class="abstract-card card-3 glass-panel">
+                    <i class="fas fa-rocket"></i>
+                    <span>Deploy</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About & Stats Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>Who We Are</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="about-grid">
+                <div class="about-text glass-panel reveal delay-1">
+                    <h3>Empowering Tech Leaders</h3>
+                    <p>The DKTE ACM Student Chapter is dedicated to promoting knowledge and advancing the profession of computer science. Through interactive workshops, hackathons, and seminars, we bridge the gap between academia and industry.</p>
+                    <p>Our mission is to foster a culture of continuous learning and collaboration, providing members with the resources and network they need to succeed in the ever-evolving tech landscape.</p>
+                </div>
+                <div class="stats-container reveal delay-2">
+                    <div class="stat-box glass-panel">
+                        <div class="stat-icon"><i class="fas fa-users"></i></div>
+                        <div class="stat-info">
+                            <h4 class="stat-num">200+</h4>
+                            <span class="stat-label">Active Members</span>
+                        </div>
+                    </div>
+                    <div class="stat-box glass-panel">
+                        <div class="stat-icon"><i class="fas fa-laptop-code"></i></div>
+                        <div class="stat-info">
+                            <h4 class="stat-num">30+</h4>
+                            <span class="stat-label">Technical Events</span>
+                        </div>
+                    </div>
+                    <div class="stat-box glass-panel">
+                        <div class="stat-icon"><i class="fas fa-trophy"></i></div>
+                        <div class="stat-info">
+                            <h4 class="stat-num">5+</h4>
+                            <span class="stat-label">Hackathons</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="events">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>Our Events</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="event-filters reveal delay-1">
+                <button class="filter-btn active" data-filter="upcoming">Upcoming Events</button>
+                <button class="filter-btn" data-filter="past">Past Events</button>
+            </div>
+            <!-- Dynamic Event Container -->
+            <div class="events-grid" id="events-container">
+                <!-- Events will be populated here by script.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="team">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>Meet The Board</h2>
+                <div class="title-underline"></div>
+            </div>
+            <!-- Dynamic Team Container -->
+            <div class="team-grid" id="team-container">
+                <!-- Team members will be populated here by script.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info glass-panel reveal">
+                    <h2>Join The Chapter</h2>
+                    <p>Ready to level up your computing journey? Fill out the form or reach out to us on our social channels.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-discord"></i></a>
+                    </div>
+                    <div class="contact-email">
+                        <i class="fas fa-envelope"></i> dkte.acm@example.com
+                    </div>
+                </div>
+                <div class="contact-form-container reveal delay-2">
+                    <form class="contact-form glass-panel" action="#" method="POST">
+                        <div class="input-group">
+                            <input type="text" placeholder="Full Name" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="email" placeholder="Email Address" required>
+                        </div>
+                        <div class="input-group">
+                            <textarea placeholder="Why do you want to join?" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Application</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom glass-panel">
+            <div class="container footer-flex">
+                <p>&copy; 2026 DKTE ACM Student Chapter. All rights reserved.</p>
+                <p class="developer-credit">Developed by Shreyash Chougule</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data & Scripts -->
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
