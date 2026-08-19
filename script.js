@@ -1,13 +1,53 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Sticky Header
+    // 1. Smart Sticky Header & Trigger
     const header = document.getElementById("navbar");
+    const navTrigger = document.getElementById("nav-trigger");
+    let isHeaderForcedOpen = false;
+    let lastScrollY = window.scrollY;
+
     window.addEventListener("scroll", () => {
-        if (window.scrollY > 50) {
-            header.classList.add("scrolled");
+        // Close forced header if user scrolls more than 10px
+        if (isHeaderForcedOpen && Math.abs(window.scrollY - lastScrollY) > 10) {
+            isHeaderForcedOpen = false;
+        }
+        lastScrollY = window.scrollY;
+
+        if (window.scrollY <= 80) {
+            header.classList.remove("hidden", "scrolled");
+            if(navTrigger) navTrigger.classList.remove("visible");
+            isHeaderForcedOpen = false;
         } else {
-            header.classList.remove("scrolled");
+            if (!isHeaderForcedOpen) {
+                header.classList.add("hidden");
+                header.classList.remove("scrolled");
+                if(navTrigger) navTrigger.classList.add("visible");
+            }
         }
     });
+
+    if(navTrigger) {
+        const openHeader = () => {
+            if (window.scrollY > 80) {
+                isHeaderForcedOpen = true;
+                header.classList.remove("hidden");
+                header.classList.add("scrolled");
+                navTrigger.classList.remove("visible");
+            }
+        };
+        navTrigger.addEventListener("mouseenter", openHeader);
+        navTrigger.addEventListener("click", openHeader);
+    }
+
+    if(header) {
+        header.addEventListener("mouseleave", () => {
+            if (window.scrollY > 80 && isHeaderForcedOpen) {
+                isHeaderForcedOpen = false;
+                header.classList.add("hidden");
+                header.classList.remove("scrolled");
+                if(navTrigger) navTrigger.classList.add("visible");
+            }
+        });
+    }
 
     // 2. Mobile Menu Toggle
     const hamburger = document.querySelector(".hamburger");
@@ -58,7 +98,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // 4. Render Team Members
     const teamContainer = document.getElementById("team-container");
     if (teamContainer && typeof TEAM_MEMBERS !== 'undefined') {
-        TEAM_MEMBERS.forEach((member, index) => {
+        const membersToRender = TEAM_MEMBERS;
+
+        membersToRender.forEach((member, index) => {
             const card = document.createElement("div");
             const delayClass = `delay-${(index % 3) + 1}`;
             card.className = `team-card glass-panel reveal ${delayClass}`;
@@ -69,10 +111,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
                 <h3 class="team-name">${member.name}</h3>
                 <p class="team-role">${member.role}</p>
-                <div class="team-social">
-                    ${member.linkedin ? `<a href="${member.linkedin}" target="_blank"><i class="fab fa-linkedin-in"></i></a>` : ''}
-                    ${member.github ? `<a href="${member.github}" target="_blank"><i class="fab fa-github"></i></a>` : ''}
-                </div>
             `;
             teamContainer.appendChild(card);
         });
@@ -80,34 +118,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 5. Render Events
     const eventsContainer = document.getElementById("events-container");
-    const filterBtns = document.querySelectorAll(".filter-btn");
 
-    function renderEvents(filterCategory) {
+    function renderEvents() {
         if (!eventsContainer || typeof EVENTS === 'undefined') return;
         
         eventsContainer.innerHTML = "";
-        const filteredEvents = EVENTS.filter(event => event.category === filterCategory);
         
-        if (filteredEvents.length === 0) {
-            eventsContainer.innerHTML = `<p style="grid-column: 1 / -1; color: var(--text-secondary); text-align: center;">No events found in this category.</p>`;
+        if (EVENTS.length === 0) {
+            eventsContainer.innerHTML = `<p style="grid-column: 1 / -1; color: var(--text-secondary); text-align: center;">No events found.</p>`;
             return;
         }
 
-        filteredEvents.forEach((event, index) => {
+        EVENTS.forEach((event, index) => {
             const card = document.createElement("div");
             const delayClass = `delay-${(index % 3) + 1}`;
             card.className = `event-card glass-panel reveal ${delayClass}`;
             
             card.innerHTML = `
                 <div class="event-banner-wrapper">
-                    <span class="event-badge">${event.category === 'upcoming' ? 'Upcoming' : 'Completed'}</span>
+                    <span class="event-badge">${event.category.charAt(0).toUpperCase() + event.category.slice(1)}</span>
                     <img src="${event.banner}" alt="${event.title}" class="event-banner" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'400\\' height=\\'200\\'><rect width=\\'400\\' height=\\'200\\' fill=\\'%23000\\'/></svg>'">
                 </div>
                 <div class="event-content">
                     <h3 class="event-title">${event.title}</h3>
                     <div class="event-date"><i class="far fa-calendar-alt"></i> ${event.date}</div>
                     <p class="event-desc">${event.description}</p>
-                    <a href="${event.link}" class="event-link">
+                    <a href="event-details.html?id=${event.id}" class="event-link">
                         <span>View Details</span>
                         <i class="fas fa-arrow-right"></i>
                     </a>
@@ -119,15 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
         initReveal();
     }
 
-    renderEvents("upcoming");
-
-    filterBtns.forEach(btn => {
-        btn.addEventListener("click", () => {
-            filterBtns.forEach(b => b.classList.remove("active"));
-            btn.classList.add("active");
-            renderEvents(btn.getAttribute("data-filter"));
-        });
-    });
+    renderEvents();
 
     // Initialize all reveal animations on page load
     initReveal();

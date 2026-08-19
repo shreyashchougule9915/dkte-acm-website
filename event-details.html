@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Details - DKTE Student Chapter</title>
+    <!-- Fonts: Plus Jakarta Sans for premium tech feel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Icons (FontAwesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Liquid Color Background -->
+    <div class="liquid-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Navigation Trigger Button -->
+    <div id="nav-trigger" class="nav-trigger glass-panel">
+        <i class="fas fa-chevron-down"></i>
+    </div>
+
+    <!-- Glassmorphism Header -->
+    <header id="navbar" class="glass-nav">
+        <div class="container nav-container">
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#events">Events</a></li>
+                    <li><a href="index.html#team">Team</a></li>
+                </ul>
+            </nav>
+            <a href="https://www.acm.org/" target="_blank" class="btn btn-outline nav-cta">Join Chapter</a>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+        <!-- Mobile Nav Menu -->
+        <div class="mobile-nav glass-panel">
+            <ul class="mobile-nav-links">
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#events">Events</a></li>
+                <li><a href="index.html#team">Team</a></li>
+                <li><a href="https://www.acm.org/" target="_blank" class="btn btn-primary" style="margin-top: 10px;">Join Us</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Event Details Section -->
+    <section id="event-details" style="padding-top: 150px; min-height: 100vh;">
+        <div class="container">
+            <a href="index.html#events" class="btn btn-glass" style="margin-bottom: 24px;">
+                <i class="fas fa-arrow-left"></i> <span style="margin-left: 8px;">Back to Events</span>
+            </a>
+            
+            <div id="event-content-container" class="glass-panel event-details-panel">
+                <!-- Event details will be injected here via JavaScript -->
+                <div style="text-align: center; color: var(--text-secondary);">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 2rem; margin-bottom: 16px;"></i>
+                    <p>Loading event details...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer" style="padding: 0;">
+        <div class="footer-bottom glass-panel">
+            <div class="container footer-flex">
+                <p>&copy; 2026 ACM Student Chapter DKTE. All rights reserved.</p>
+                <p class="developer-credit">Developed by <a href="https://www.linkedin.com/in/shreyash-chougule-857aa638a/" target="_blank" rel="noopener noreferrer" style="color: var(--primary-cyan); text-decoration: none; font-weight: 600;">Shreyash Chougule</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Data & Scripts -->
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+    
+    <!-- Event Details Logic -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const eventId = urlParams.get('id');
+            const container = document.getElementById("event-content-container");
+            
+            if (!eventId || typeof EVENTS === 'undefined') {
+                container.innerHTML = `<h2 style="color: #ff4d4d; text-align: center;">Error: Event not found.</h2>`;
+                return;
+            }
+            
+            const eventData = EVENTS.find(e => e.id === eventId);
+            
+            if (!eventData) {
+                container.innerHTML = `<h2 style="color: #ff4d4d; text-align: center;">Error: Event not found.</h2>`;
+                return;
+            }
+            
+            // Set Page Title
+            document.title = `${eventData.title} - DKTE Student Chapter`;
+            
+            // Render Details
+            container.innerHTML = `
+                <div class="event-details-banner-wrapper">
+                    <img src="${eventData.banner}" alt="${eventData.title}" class="event-details-banner" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'800\\' height=\\'400\\'><rect width=\\'800\\' height=\\'400\\' fill=\\'%23111\\'/></svg>'">
+                    <span class="event-badge" style="position: absolute; top: 16px; left: 16px; background: var(--primary-blue); padding: 6px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;">
+                        ${eventData.category.charAt(0).toUpperCase() + eventData.category.slice(1)}
+                    </span>
+                </div>
+                
+                <h1 class="event-details-title">${eventData.title}</h1>
+                
+                <div class="event-details-meta">
+                    <div><i class="far fa-calendar-alt"></i> ${eventData.date}</div>
+                    <div><i class="fas fa-map-marker-alt"></i> DKTE Campus</div>
+                </div>
+                
+                <div class="event-details-body">
+                    <p style="margin-bottom: 24px;">${eventData.description}</p>
+                    
+                    <h3>Event Highlights</h3>
+                    <ul>
+                        <li>Learn from industry experts</li>
+                        <li>Networking opportunities with peers and professionals</li>
+                        <li>Hands-on practical experience</li>
+                        <li>Certificate of participation</li>
+                    </ul>
+                </div>
+                ${(eventData.category === 'upcoming' || eventData.category === 'ongoing') ? `
+                    <div style="margin-top: 40px; text-align: center;">
+                        <a href="#" class="btn btn-primary" style="font-size: 1.2rem; padding: 16px 40px;">
+                            ${eventData.category === 'ongoing' ? 'Join Now' : 'Register Now'} <i class="fas fa-ticket-alt" style="margin-left: 8px;"></i>
+                        </a>
+                    </div>
+                ` : ''}
+            `;
+        });
+    </script>
+</body>
+</html>

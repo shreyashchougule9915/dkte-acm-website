@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All ACM Team - DKTE Student Chapter</title>
+    <!-- Fonts: Plus Jakarta Sans for premium tech feel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Icons (FontAwesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Liquid Color Background -->
+    <div class="liquid-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Navigation Trigger Button -->
+    <div id="nav-trigger" class="nav-trigger glass-panel">
+        <i class="fas fa-chevron-down"></i>
+    </div>
+
+    <!-- Glassmorphism Header -->
+    <header id="navbar" class="glass-nav">
+        <div class="container nav-container">
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#events">Events</a></li>
+                    <li><a href="index.html#team">Team</a></li>
+                </ul>
+            </nav>
+            <a href="https://www.acm.org/" target="_blank" class="btn btn-outline nav-cta">Join Chapter</a>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+        <!-- Mobile Nav Menu -->
+        <div class="mobile-nav glass-panel">
+            <ul class="mobile-nav-links">
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#events">Events</a></li>
+                <li><a href="index.html#team">Team</a></li>
+                <li><a href="https://www.acm.org/" target="_blank" class="btn btn-primary" style="margin-top: 10px;">Join Us</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Team Section -->
+    <section id="team" class="team" style="padding-top: 150px; min-height: 100vh;">
+        <div class="container">
+            <a href="index.html#team" class="btn btn-glass" style="margin-bottom: 24px;">
+                <i class="fas fa-arrow-left"></i> <span style="margin-left: 8px;">Back to Home</span>
+            </a>
+            
+            <div class="section-title reveal">
+                <h2>All ACM Team Members</h2>
+                <div class="title-underline"></div>
+            </div>
+            <!-- Dynamic Team Container -->
+            <div class="team-grid" id="team-container" data-page="all">
+                <!-- Team members will be populated here by script.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer" style="padding: 0;">
+        <div class="footer-bottom glass-panel">
+            <div class="container footer-flex">
+                <p>&copy; 2026 ACM Student Chapter DKTE. All rights reserved.</p>
+                <p class="developer-credit">Developed by <a href="https://www.linkedin.com/in/shreyash-chougule-857aa638a/" target="_blank" rel="noopener noreferrer" style="color: var(--primary-cyan); text-decoration: none; font-weight: 600;">Shreyash Chougule</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Data & Scripts -->
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
