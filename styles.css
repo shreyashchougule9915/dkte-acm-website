@@ -1310,10 +1310,10 @@ section:not(.hero) {
     .nav-links a { font-size: 0.85rem; white-space: nowrap; }
     .nav-cta.btn-outline { white-space: nowrap; }
     
-    .hero-brand-text { font-size: 1rem; letter-spacing: 0.05em; white-space: normal; line-height: 1.3; }
-    .hero-brand-pill { padding: 16px 20px; gap: 20px; max-width: 100%; box-sizing: border-box; border-radius: 60px; }
-    .hero-brand-logo { height: 75px; }
-    .hero-brand-divider { height: 50px; }
+    .hero-brand-text { font-size: 1.15rem; letter-spacing: 0.05em; white-space: normal; line-height: 1.3; }
+    .hero-brand-pill { padding: 20px 24px; gap: 24px; width: 100%; justify-content: center; box-sizing: border-box; border-radius: 40px; }
+    .hero-brand-logo { height: 95px; }
+    .hero-brand-divider { height: 70px; }
     
     .hero h1 { font-size: 1.8rem; word-wrap: break-word; }
     
