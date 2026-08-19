@@ -39,8 +39,9 @@ body {
     font-family: var(--font-main);
     background-color: var(--bg-dark);
     color: var(--text-primary);
-    line-height: 1.6;
     overflow-x: hidden;
+    width: 100%;
+    line-height: 1.6;
     position: relative;
     -webkit-font-smoothing: antialiased;
     /* Native tech cursor using data URI for maximum performance and premium feel */
@@ -1309,14 +1310,14 @@ section:not(.hero) {
     .nav-links a { font-size: 0.85rem; white-space: nowrap; }
     .nav-cta.btn-outline { white-space: nowrap; }
     
-    .hero-brand-text { font-size: 0.75rem; letter-spacing: 0.1em; }
-    .hero-brand-pill { padding: 10px 16px; gap: 12px; }
-    .hero-brand-logo { height: 50px; }
+    .hero-brand-text { font-size: 0.75rem; letter-spacing: 0.1em; white-space: normal; line-height: 1.2; }
+    .hero-brand-pill { padding: 10px 16px; gap: 12px; max-width: 100%; box-sizing: border-box; }
+    .hero-brand-logo { height: 40px; }
     
-    .hero h1 { font-size: 2rem; }
+    .hero h1 { font-size: 1.8rem; word-wrap: break-word; }
     
-    .team-grid { grid-template-columns: 1fr 1fr; gap: 12px; } /* Keep 2 columns so faces aren't huge */
-    .team-card { padding: 12px; text-align: center; }
+    .team-grid { grid-template-columns: 1fr 1fr; gap: 12px; max-width: 100%; overflow: hidden; } /* Keep 2 columns so faces aren't huge */
+    .team-card { padding: 12px; text-align: center; box-sizing: border-box; }
     .team-img-wrapper { border-radius: 8px; margin-bottom: 12px; }
     .team-name { font-size: 0.95rem; }
     .team-role { font-size: 0.75rem; }
